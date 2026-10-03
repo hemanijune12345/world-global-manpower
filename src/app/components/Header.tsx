@@ -4,18 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { useLanguage, Language } from "./LanguageContext";
 
 export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [jobsOpen, setJobsOpen] = useState(false);
-
-  const { language, setLanguage, t } = useLanguage();
-
-  const changeLanguage = (lang: Language) => {
-    setLanguage(lang);
-    setJobsOpen(false);
-  };
 
   const closeMenu = () => {
     setMobileMenu(false);
@@ -60,7 +52,7 @@ export default function Header() {
             href="/"
             className="text-sm font-semibold text-slate-700 transition hover:text-[#0647B8]"
           >
-            {t.nav.home}
+            Home
           </Link>
 
           {/* JOBS DROPDOWN */}
@@ -69,7 +61,7 @@ export default function Header() {
               onClick={() => setJobsOpen(!jobsOpen)}
               className="flex items-center gap-1 text-sm font-semibold text-slate-700 transition hover:text-[#0647B8]"
             >
-              {t.nav.jobs}
+              Jobs in Russia
 
               <ChevronDown
                 size={16}
@@ -87,7 +79,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block rounded-xl px-4 py-3 text-sm font-bold text-[#0647B8] hover:bg-[#F1F8FF]"
                 >
-                  {t.nav.allJobs}
+                  All Jobs
                 </Link>
 
                 <Link
@@ -95,7 +87,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block rounded-xl px-4 py-3 text-sm text-slate-600 hover:bg-[#F1F8FF]"
                 >
-                  {t.nav.scanner}
+                  Scanner / Barcode Operator
                 </Link>
 
                 <Link
@@ -103,7 +95,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block rounded-xl px-4 py-3 text-sm text-slate-600 hover:bg-[#F1F8FF]"
                 >
-                  {t.nav.packing}
+                  Packing Worker
                 </Link>
 
                 <Link
@@ -111,7 +103,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block rounded-xl px-4 py-3 text-sm text-slate-600 hover:bg-[#F1F8FF]"
                 >
-                  {t.nav.construction}
+                  Construction Worker
                 </Link>
 
                 <Link
@@ -119,7 +111,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block rounded-xl px-4 py-3 text-sm text-slate-600 hover:bg-[#F1F8FF]"
                 >
-                  {t.nav.labour}
+                  General Labour
                 </Link>
 
                 <Link
@@ -127,7 +119,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block rounded-xl px-4 py-3 text-sm text-slate-600 hover:bg-[#F1F8FF]"
                 >
-                  {t.nav.driver}
+                  Driver
                 </Link>
 
                 <Link
@@ -135,7 +127,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block rounded-xl px-4 py-3 text-sm text-slate-600 hover:bg-[#F1F8FF]"
                 >
-                  {t.nav.cook}
+                  Cook
                 </Link>
 
                 <Link
@@ -143,78 +135,51 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block rounded-xl px-4 py-3 text-sm text-slate-600 hover:bg-[#F1F8FF]"
                 >
-                  {t.nav.tailor}
+                  Tailor
                 </Link>
               </div>
             )}
           </div>
 
-          {/* OTHER LINKS */}
+          {/* MBBS */}
           <Link
             href="/mbbs-russia"
             className="text-sm font-semibold text-slate-700 transition hover:text-[#0647B8]"
           >
-            {t.nav.mbbs}
+            MBBS in Russia
           </Link>
 
+          {/* IMPORT & EXPORT */}
+          <Link
+            href="/import-export"
+            className="text-sm font-semibold text-slate-700 transition hover:text-[#0647B8]"
+          >
+            Import & Export
+          </Link>
+
+          {/* ABOUT */}
           <Link
             href="/about"
             className="text-sm font-semibold text-slate-700 transition hover:text-[#0647B8]"
           >
-            {t.nav.about}
+            About Us
           </Link>
 
+          {/* GALLERY */}
           <Link
             href="/gallery"
             className="text-sm font-semibold text-slate-700 transition hover:text-[#0647B8]"
           >
-            {t.nav.gallery}
+            Gallery
           </Link>
 
+          {/* CONTACT */}
           <Link
             href="/contact"
             className="text-sm font-semibold text-slate-700 transition hover:text-[#0647B8]"
           >
-            {t.nav.contact}
+            Contact
           </Link>
-
-          {/* LANGUAGE SWITCHER */}
-          <div className="flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1">
-
-            <button
-              onClick={() => changeLanguage("en")}
-              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
-                language === "en"
-                  ? "bg-[#0647B8] text-white"
-                  : "text-slate-500 hover:text-[#0647B8]"
-              }`}
-            >
-              EN
-            </button>
-
-            <button
-              onClick={() => changeLanguage("hi")}
-              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
-                language === "hi"
-                  ? "bg-[#0647B8] text-white"
-                  : "text-slate-500 hover:text-[#0647B8]"
-              }`}
-            >
-              HI
-            </button>
-
-            <button
-              onClick={() => changeLanguage("ru")}
-              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
-                language === "ru"
-                  ? "bg-[#0647B8] text-white"
-                  : "text-slate-500 hover:text-[#0647B8]"
-              }`}
-            >
-              RU
-            </button>
-
-          </div>
         </nav>
 
         {/* MOBILE MENU BUTTON */}
@@ -232,12 +197,13 @@ export default function Header() {
         <div className="border-t border-slate-200 bg-white px-5 py-5 shadow-xl lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1">
 
+            {/* HOME */}
             <Link
               href="/"
               onClick={closeMenu}
               className="rounded-xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#F1F8FF]"
             >
-              {t.nav.home}
+              Home
             </Link>
 
             {/* MOBILE JOBS */}
@@ -245,7 +211,7 @@ export default function Header() {
               onClick={() => setJobsOpen(!jobsOpen)}
               className="flex items-center justify-between rounded-xl px-4 py-3 text-left font-semibold text-slate-700 hover:bg-[#F1F8FF]"
             >
-              {t.nav.jobs}
+              Jobs in Russia
 
               <ChevronDown
                 size={18}
@@ -261,7 +227,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block px-3 py-2 text-sm font-bold text-[#0647B8]"
                 >
-                  {t.nav.allJobs}
+                  All Jobs
                 </Link>
 
                 <Link
@@ -269,7 +235,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block px-3 py-2 text-sm text-slate-600"
                 >
-                  {t.nav.scanner}
+                  Scanner / Barcode Operator
                 </Link>
 
                 <Link
@@ -277,7 +243,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block px-3 py-2 text-sm text-slate-600"
                 >
-                  {t.nav.packing}
+                  Packing Worker
                 </Link>
 
                 <Link
@@ -285,7 +251,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block px-3 py-2 text-sm text-slate-600"
                 >
-                  {t.nav.construction}
+                  Construction Worker
                 </Link>
 
                 <Link
@@ -293,7 +259,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block px-3 py-2 text-sm text-slate-600"
                 >
-                  {t.nav.labour}
+                  General Labour
                 </Link>
 
                 <Link
@@ -301,7 +267,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block px-3 py-2 text-sm text-slate-600"
                 >
-                  {t.nav.driver}
+                  Driver
                 </Link>
 
                 <Link
@@ -309,7 +275,7 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block px-3 py-2 text-sm text-slate-600"
                 >
-                  {t.nav.cook}
+                  Cook
                 </Link>
 
                 <Link
@@ -317,82 +283,55 @@ export default function Header() {
                   onClick={closeMenu}
                   className="block px-3 py-2 text-sm text-slate-600"
                 >
-                  {t.nav.tailor}
+                  Tailor
                 </Link>
-
               </div>
             )}
 
-            {/* MOBILE LINKS */}
+            {/* MBBS */}
             <Link
               href="/mbbs-russia"
               onClick={closeMenu}
               className="rounded-xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#F1F8FF]"
             >
-              {t.nav.mbbs}
+              MBBS in Russia
             </Link>
 
+            {/* IMPORT & EXPORT */}
+            <Link
+              href="/import-export"
+              onClick={closeMenu}
+              className="rounded-xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#F1F8FF]"
+            >
+              Import & Export
+            </Link>
+
+            {/* ABOUT */}
             <Link
               href="/about"
               onClick={closeMenu}
               className="rounded-xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#F1F8FF]"
             >
-              {t.nav.about}
+              About Us
             </Link>
 
+            {/* GALLERY */}
             <Link
               href="/gallery"
               onClick={closeMenu}
               className="rounded-xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#F1F8FF]"
             >
-              {t.nav.gallery}
+              Gallery
             </Link>
 
+            {/* CONTACT */}
             <Link
               href="/contact"
               onClick={closeMenu}
               className="rounded-xl px-4 py-3 font-semibold text-slate-700 hover:bg-[#F1F8FF]"
             >
-              {t.nav.contact}
+              Contact
             </Link>
-
-            {/* MOBILE LANGUAGE */}
-            <div className="mt-3 flex gap-2 border-t border-slate-100 pt-4">
-
-              <button
-                onClick={() => changeLanguage("en")}
-                className={`rounded-full px-4 py-2 text-xs font-bold ${
-                  language === "en"
-                    ? "bg-[#0647B8] text-white"
-                    : "bg-slate-100 text-slate-600"
-                }`}
-              >
-                English
-              </button>
-
-              <button
-                onClick={() => changeLanguage("hi")}
-                className={`rounded-full px-4 py-2 text-xs font-bold ${
-                  language === "hi"
-                    ? "bg-[#0647B8] text-white"
-                    : "bg-slate-100 text-slate-600"
-                }`}
-              >
-                हिन्दी
-              </button>
-
-              <button
-                onClick={() => changeLanguage("ru")}
-                className={`rounded-full px-4 py-2 text-xs font-bold ${
-                  language === "ru"
-                    ? "bg-[#0647B8] text-white"
-                    : "bg-slate-100 text-slate-600"
-                }`}
-              >
-                Русский
-              </button>
-
-            </div>
           </nav>
         </div>
       )}

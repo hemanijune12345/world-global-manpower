@@ -15,8 +15,13 @@ import {
   Search,
   ShieldCheck,
   Truck,
+  Globe2,
+  FileCheck2,
+  UsersRound,
+  Apple,
+  Coffee,
+  Wheat,
 } from "lucide-react";
-import { useLanguage } from "./components/LanguageContext";
 
 const featuredJobs = [
   {
@@ -49,9 +54,30 @@ const featuredJobs = [
   },
 ];
 
-export default function Home() {
-  const { t } = useLanguage();
+const featuredContent = {
+  scanner: {
+    category: "Warehouse",
+    title: "Scanner / Barcode Operator",
+    description: "Explore scanner and barcode operator opportunities in Russia.",
+  },
+  packing: {
+    category: "Packing",
+    title: "Packing Worker",
+    description: "Explore packing and warehouse opportunities in Russia.",
+  },
+  construction: {
+    category: "Construction",
+    title: "Construction Worker",
+    description: "Explore construction and infrastructure work opportunities in Russia.",
+  },
+  driver: {
+    category: "Transport",
+    title: "Driver",
+    description: "Explore driving and transport opportunities in Russia.",
+  },
+} as const;
 
+export default function Home() {
   const handleHeroEnquiry = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -96,52 +122,121 @@ Thank you.`;
             alt="Moscow, Russia"
             fill
             priority
-            className="object-cover"
+            className="object-cover scale-[1.03]"
           />
 
           <div className="absolute inset-0 bg-gradient-to-r from-[#061B3A]/95 via-[#061B3A]/85 to-[#061B3A]/55" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#061B3A] via-transparent to-[#061B3A]/20" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-14">
+        <div className="relative mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 lg:px-10 lg:py-24 xl:py-28">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
 
             {/* =====================================================
                 HERO LEFT CONTENT
             ===================================================== */}
             <div className="max-w-3xl">
 
-              {/* INDIA → RUSSIA */}
-              <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-black text-white shadow-xl backdrop-blur-md">
-                <span className="text-xl">🇮🇳</span>
+              {/* INDIA → RUSSIA / BUSINESS IDENTITY */}
+              <div className="mb-6 flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-black text-white shadow-xl backdrop-blur-md">
+                  <span className="text-xl">🇮🇳</span>
+                  <span>India</span>
+                  <ArrowRight size={17} className="text-[#08C7D9]" />
+                  <span className="text-xl">🇷🇺</span>
+                  <span>Russia</span>
+                </div>
 
-                <span>{t.home.hero.india}</span>
-
-                <ArrowRight
-                  size={17}
-                  className="text-[#08C7D9]"
-                />
-
-                <span className="text-xl">🇷🇺</span>
-
-                <span>{t.home.hero.russia}</span>
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#08C7D9]/30 bg-[#08C7D9]/10 px-4 py-3 text-xs font-black text-[#B8FAFF]">
+                  <BriefcaseBusiness size={15} />
+                  Manpower, Education & Trade
+                </div>
               </div>
 
               <p className="mb-5 text-xs font-black uppercase tracking-[0.25em] text-[#08C7D9] sm:text-sm">
-                {t.home.hero.badge}
+                Manpower Recruitment, Education & International Trade
               </p>
 
-              <h1 className="text-5xl font-black leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-[5.2rem]">
-                {t.home.hero.title}
+              <h1 className="text-[2.9rem] font-black leading-[0.94] tracking-[-0.045em] text-white sm:text-6xl lg:text-[5.3rem]">
+                Connecting India with
                 <br />
                 <span className="text-[#08C7D9]">
-                  {t.home.hero.highlight}
+                  Opportunities in Russia
                 </span>
               </h1>
 
               <p className="mt-7 max-w-2xl text-base leading-8 text-white/75 sm:text-lg">
-                {t.home.hero.description}
+                Recruitment support for Indian candidates, education guidance for students and international trade services connecting people and products across markets.
               </p>
+
+              {/* THREE CORE SERVICES */}
+              <div className="mt-7 grid max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <Link
+                  href="/jobs"
+                  className="group rounded-2xl border border-white/15 bg-white/[0.08] p-4 backdrop-blur-md transition hover:-translate-y-1 hover:border-[#08C7D9]/50 hover:bg-white/[0.12]"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#08C7D9] text-[#061B3A]">
+                      <BriefcaseBusiness size={21} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.16em] text-[#08C7D9]">
+                        Manpower Recruitment
+                      </p>
+                      <h3 className="mt-1 text-base font-black text-white">
+                        Jobs in Russia for Indian Candidates
+                      </h3>
+                      <p className="mt-1 text-xs leading-5 text-white/55">
+                        Explore available job opportunities and connect with our recruitment team.
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/mbbs-russia"
+                  className="group rounded-2xl border border-white/15 bg-white/[0.08] p-4 backdrop-blur-md transition hover:-translate-y-1 hover:border-[#08C7D9]/50 hover:bg-white/[0.12]"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-[#0647B8]">
+                      <GraduationCap size={21} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.16em] text-[#08C7D9]">
+                        Student Guidance
+                      </p>
+                      <h3 className="mt-1 text-base font-black text-white">
+                        MBBS in Russia for Indian Students
+                      </h3>
+                      <p className="mt-1 text-xs leading-5 text-white/55">
+                        Guidance for students exploring medical education opportunities in Russia.
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/import-export"
+                  className="group rounded-2xl border border-white/15 bg-white/[0.08] p-4 backdrop-blur-md transition hover:-translate-y-1 hover:border-[#08C7D9]/50 hover:bg-white/[0.12]"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F5B700] text-[#061B3A]">
+                      <Globe2 size={21} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.16em] text-[#08C7D9]">
+                        Import & Export
+                      </p>
+                      <h3 className="mt-1 text-base font-black text-white">
+                        Rice, Fruits, Coffee & Pulses
+                      </h3>
+                      <p className="mt-1 text-xs leading-5 text-white/55">
+                        International sourcing and trade support for selected food and agricultural products.
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
 
               {/* BUTTONS */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -149,7 +244,7 @@ Thank you.`;
                   href="/jobs"
                   className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#08C7D9] px-7 py-4 font-black text-[#061B3A] shadow-xl transition hover:-translate-y-1 hover:bg-cyan-300"
                 >
-                  {t.home.hero.exploreJobs}
+                  Explore Jobs
 
                   <ArrowRight
                     size={18}
@@ -163,28 +258,50 @@ Thank you.`;
                 >
                   <GraduationCap size={19} />
 
-                  {t.home.hero.mbbs}
+                  Explore MBBS in Russia
                 </Link>
               </div>
 
+              {/* TRUST / STATS */}
+              <div className="mt-9 grid max-w-3xl grid-cols-3 border-y border-white/10 py-5">
+                {[
+                  { value: "India", label: "Candidate base", icon: UsersRound },
+                  { value: "Russia", label: "Destination focus", icon: Globe2 },
+                  { value: "3", label: "Core services", icon: BriefcaseBusiness },
+                ].map((stat) => {
+                  const Icon = stat.icon;
+                  return (
+                    <div key={stat.label} className="border-r border-white/10 px-3 first:pl-0 last:border-r-0 sm:px-5">
+                      <div className="flex items-center gap-2">
+                        <Icon size={15} className="text-[#08C7D9]" />
+                        <span className="text-sm font-black text-white">{stat.value}</span>
+                      </div>
+                      <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white/45">
+                        {stat.label}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+
               {/* MINI SERVICES */}
-              <div className="mt-9 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+              <div className="mt-7 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
                 {[
                   {
                     icon: BriefcaseBusiness,
-                    text: t.home.hero.jobs,
+                    text: "Jobs in Russia",
                   },
                   {
                     icon: ShieldCheck,
-                    text: t.home.hero.recruitment,
+                    text: "Recruitment Support",
                   },
                   {
                     icon: GraduationCap,
-                    text: t.home.hero.education,
+                    text: "Education Guidance",
                   },
                   {
                     icon: Headphones,
-                    text: t.home.hero.support,
+                    text: "Candidate Support",
                   },
                 ].map((item) => {
                   const Icon = item.icon;
@@ -213,7 +330,7 @@ Thank you.`;
             ===================================================== */}
             <div className="relative mx-auto w-full max-w-xl lg:ml-auto">
 
-              <div className="rounded-[2rem] border border-white/20 bg-white/95 p-6 shadow-2xl backdrop-blur-xl sm:p-7">
+              <div className="rounded-[2rem] border border-white/40 bg-white/[0.97] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-8">
 
                 {/* FORM HEADER */}
                 <div className="mb-6">
@@ -331,6 +448,23 @@ Thank you.`;
                   </div>
     
 
+                  {/* MESSAGE */}
+                  <div>
+                    <label
+                      htmlFor="hero-message"
+                      className="mb-1.5 block text-xs font-black text-[#061B3A]"
+                    >
+                      Message <span className="font-medium text-slate-400">(optional)</span>
+                    </label>
+                    <textarea
+                      id="hero-message"
+                      name="message"
+                      rows={3}
+                      placeholder="Tell us what you are looking for..."
+                      className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-[#061B3A] outline-none transition placeholder:text-slate-400 focus:border-[#0647B8] focus:bg-white focus:ring-2 focus:ring-[#0647B8]/10"
+                    />
+                  </div>
+
                   {/* WHATSAPP BUTTON */}
                   <button
                     type="submit"
@@ -381,7 +515,7 @@ Thank you.`;
 
             <div className="border-r border-white/10 py-5">
               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#08C7D9]">
-                {t.home.hero.india}
+                India
               </p>
 
               <p className="mt-1 text-xs font-black text-white sm:text-sm">
@@ -391,7 +525,7 @@ Thank you.`;
 
             <div className="border-r border-white/10 px-4 py-5 sm:px-8">
               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#08C7D9]">
-                {t.home.hero.route}
+                India → Russia
               </p>
 
               <p className="mt-1 text-xs font-black text-white sm:text-sm">
@@ -401,11 +535,11 @@ Thank you.`;
 
             <div className="px-4 py-5 sm:px-8">
               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#08C7D9]">
-                {t.home.hero.russia}
+                Russia
               </p>
 
               <p className="mt-1 text-xs font-black text-white sm:text-sm">
-                Jobs & Education
+                Manpower + MBBS
               </p>
             </div>
 
@@ -423,14 +557,26 @@ Thank you.`;
 
             {/* IMAGE */}
             <div className="relative">
-              <div className="overflow-hidden rounded-[2rem] shadow-2xl">
+              <div className="group relative overflow-hidden rounded-[2rem] shadow-2xl">
                 <Image
                   src="/russia-city.jpg"
                   alt="Russia city"
                   width={2048}
                   height={769}
-                  className="h-[420px] w-full object-cover"
+                  className="h-[420px] w-full object-cover transition duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#061B3A]/80 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4 text-white">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#08C7D9]">
+                      India → Russia
+                    </p>
+                    <p className="mt-1 text-xl font-black">A focused route for jobs & education</p>
+                  </div>
+                  <div className="hidden rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-bold backdrop-blur-md sm:block">
+                    Explore Russia
+                  </div>
+                </div>
               </div>
 
               <div className="absolute -bottom-6 -right-5 rounded-2xl border border-white/20 bg-[#061B3A] px-6 py-5 text-white shadow-2xl sm:-right-8">
@@ -446,7 +592,7 @@ Thank you.`;
                 </div>
 
                 <p className="mt-2 text-xs font-bold text-blue-100/70">
-                  {t.home.hero.route}
+                  India → Russia
                 </p>
               </div>
             </div>
@@ -454,18 +600,18 @@ Thank you.`;
             {/* CONTENT */}
             <div>
               <p className="text-sm font-black uppercase tracking-[0.2em] text-[#0647B8]">
-                {t.home.services.eyebrow}
+                Our Services
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-[#061B3A] sm:text-5xl">
-                {t.home.services.title}{" "}
+                Connecting people,{" "}
                 <span className="text-[#0647B8]">
-                  {t.home.services.highlight}
+                  education and trade
                 </span>
               </h2>
 
               <p className="mt-6 max-w-xl text-base leading-8 text-slate-600 sm:text-lg">
-                {t.home.services.description}
+                We connect Indian candidates with job opportunities in Russia, guide students exploring MBBS education and support international trade enquiries for selected products.
               </p>
 
               <div className="mt-9 space-y-4">
@@ -480,11 +626,11 @@ Thank you.`;
 
                   <div className="flex-1">
                     <h3 className="font-black text-[#061B3A]">
-                      {t.home.services.jobsTitle}
+                      Jobs in Russia
                     </h3>
 
                     <p className="mt-1 text-sm text-slate-500">
-                      {t.home.services.jobsDescription}
+                      Recruitment support for Indian candidates across available job categories.
                     </p>
                   </div>
 
@@ -504,11 +650,35 @@ Thank you.`;
 
                   <div className="flex-1">
                     <h3 className="font-black text-[#061B3A]">
-                      {t.home.services.mbbsTitle}
+                      MBBS in Russia
                     </h3>
 
                     <p className="mt-1 text-sm text-slate-500">
-                      {t.home.services.mbbsDescription}
+                      Guidance for Indian students exploring medical education opportunities in Russia.
+                    </p>
+                  </div>
+
+                  <ChevronRight
+                    size={20}
+                    className="text-[#0647B8] transition-transform group-hover:translate-x-1"
+                  />
+                </Link>
+
+                <Link
+                  href="/import-export"
+                  className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5B700] text-[#061B3A]">
+                    <Globe2 size={22} />
+                  </div>
+
+                  <div className="flex-1">
+                    <h3 className="font-black text-[#061B3A]">
+                      Import & Export
+                    </h3>
+
+                    <p className="mt-1 text-sm text-slate-500">
+                      Rice, fruits, coffee and pulses with international sourcing and trade support.
                     </p>
                   </div>
 
@@ -535,18 +705,18 @@ Thank you.`;
 
             <div className="max-w-2xl">
               <p className="text-sm font-black uppercase tracking-[0.2em] text-[#0647B8]">
-                {t.home.featured.eyebrow}
+                Featured Opportunities
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-[#061B3A] sm:text-5xl">
-                {t.home.featured.title}{" "}
+                Explore jobs in{" "}
                 <span className="text-[#0647B8]">
-                  {t.home.featured.highlight}
+                  Russia
                 </span>
               </h2>
 
               <p className="mt-5 leading-8 text-slate-600">
-                {t.home.featured.description}
+                Browse selected job categories and connect with our recruitment team for current opportunities.
               </p>
             </div>
 
@@ -554,23 +724,23 @@ Thank you.`;
               href="/jobs"
               className="inline-flex w-fit items-center gap-2 rounded-xl bg-[#061B3A] px-5 py-3.5 text-sm font-black text-white transition hover:bg-[#0647B8]"
             >
-              {t.home.featured.viewAll}
+              View All Jobs
               <ArrowRight size={17} />
             </Link>
 
           </div>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
 
             {featuredJobs.map((job) => {
-              const data = t.home.featured[job.key];
+              const data = featuredContent[job.key];
               const Icon = job.icon;
 
               return (
                 <Link
                   key={job.key}
                   href={job.href}
-                  className="group relative overflow-hidden rounded-[1.7rem] bg-[#061B3A] shadow-lg ring-1 ring-slate-200/70 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+                  className="group relative overflow-hidden rounded-[1.7rem] bg-[#061B3A] shadow-[0_18px_50px_rgba(6,27,58,0.12)] ring-1 ring-slate-200/80 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_28px_70px_rgba(6,27,58,0.22)]"
                 >
                   <div className="relative h-[290px] overflow-hidden">
 
@@ -604,7 +774,7 @@ Thank you.`;
                   </div>
 
                   <div className="flex items-center justify-between px-5 py-4 text-sm font-black text-white">
-                    <span>{t.home.featured.viewDetails}</span>
+                    <span>View Details</span>
 
                     <ArrowRight
                       size={17}
@@ -651,28 +821,203 @@ Thank you.`;
               <div>
 
                 <p className="text-sm font-black uppercase tracking-[0.2em] text-[#0647B8]">
-                  {t.home.services.eyebrow}
+                  Our Services
                 </p>
 
                 <h2 className="mt-4 text-3xl font-black leading-tight text-[#061B3A] sm:text-4xl">
-                  {t.home.services.mbbsTitle}
+                  MBBS in Russia
                 </h2>
 
                 <p className="mt-5 leading-8 text-slate-600">
-                  {t.home.services.mbbsDescription}
+                  Guidance for Indian students exploring medical education opportunities in Russia.
                 </p>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                  {[
+                    { icon: GraduationCap, text: "Admission guidance" },
+                    { icon: FileCheck2, text: "Document support" },
+                    { icon: Headphones, text: "Student assistance" },
+                  ].map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={item.text} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                        <Icon size={17} className="text-[#0647B8]" />
+                        <p className="mt-2 text-xs font-black text-[#061B3A]">{item.text}</p>
+                      </div>
+                    );
+                  })}
+                </div>
 
                 <Link
                   href="/mbbs-russia"
                   className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#0647B8] px-6 py-3.5 font-black text-white transition hover:bg-[#061B3A]"
                 >
-                  {t.home.services.explore}
+                  Explore MBBS Guidance
                   <ArrowRight size={17} />
                 </Link>
 
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          CORE SERVICES — IMAGE LED
+      ========================================================= */}
+      <section className="bg-[#F4FAFF] py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+            <div className="max-w-3xl">
+              <p className="text-xs font-black uppercase tracking-[0.25em] text-[#0647B8]">
+                Our core services
+              </p>
+              <h2 className="mt-3 text-4xl font-black leading-[1.02] tracking-tight text-[#061B3A] sm:text-5xl lg:text-6xl">
+                Connecting people, education and products across international markets.
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-7 text-slate-600 sm:text-base">
+              Three focused areas of work: manpower recruitment, education guidance and international trade.
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* MANPOWER */}
+            <Link
+              href="/jobs"
+              className="group relative min-h-[560px] overflow-hidden rounded-[2rem] bg-[#061B3A] shadow-2xl"
+            >
+              <Image
+                src="https://images.pexels.com/photos/4483942/pexels-photo-4483942.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt="Warehouse and manpower work opportunities in Russia"
+                fill
+                className="object-cover transition duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#061B3A] via-[#061B3A]/65 to-[#061B3A]/10" />
+              <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9">
+                <div className="mb-5 flex items-center justify-between">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                    <BriefcaseBusiness size={14} className="text-[#08C7D9]" />
+                    Manpower Recruitment
+                  </span>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#08C7D9] text-[#061B3A] transition group-hover:translate-x-1">
+                    <ArrowRight size={19} />
+                  </span>
+                </div>
+                <h3 className="text-3xl font-black text-white sm:text-4xl">
+                  Jobs in Russia
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-white/75 sm:text-base">
+                  Recruitment support for Indian candidates across warehouse, packing,
+                  construction, transport, hospitality and other available roles.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2 text-[11px] font-bold text-white/70">
+                  <span className="rounded-full bg-white/10 px-3 py-2">Warehouse</span>
+                  <span className="rounded-full bg-white/10 px-3 py-2">Construction</span>
+                  <span className="rounded-full bg-white/10 px-3 py-2">Driving</span>
+                  <span className="rounded-full bg-white/10 px-3 py-2">Hospitality</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* MBBS */}
+            <Link
+              href="/mbbs-russia"
+              className="group relative min-h-[560px] overflow-hidden rounded-[2rem] bg-[#061B3A] shadow-2xl"
+            >
+              <Image
+                src="/russia-medical.jpg"
+                alt="Medical education and students in Russia"
+                fill
+                className="object-cover transition duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#061B3A] via-[#061B3A]/55 to-[#0647B8]/10" />
+              <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9">
+                <div className="mb-5 flex items-center justify-between">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                    <GraduationCap size={14} className="text-[#08C7D9]" />
+                    Student Guidance
+                  </span>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#0647B8] transition group-hover:translate-x-1">
+                    <ArrowRight size={19} />
+                  </span>
+                </div>
+                <h3 className="text-3xl font-black text-white sm:text-4xl">
+                  MBBS in Russia
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-white/75 sm:text-base">
+                  Guidance for Indian students exploring medical education in Russia,
+                  with support around admissions, documentation and the student journey.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2 text-[11px] font-bold text-white/70">
+                  <span className="rounded-full bg-white/10 px-3 py-2">Admission Guidance</span>
+                  <span className="rounded-full bg-white/10 px-3 py-2">Documentation</span>
+                  <span className="rounded-full bg-white/10 px-3 py-2">Student Support</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* IMPORT & EXPORT */}
+            <Link
+              href="/import-export"
+              className="group relative min-h-[560px] overflow-hidden rounded-[2rem] bg-[#061B3A] shadow-2xl"
+            >
+              <Image
+                src="/russia-warehouse.jpg"
+                alt="International food and agricultural product trade"
+                fill
+                className="object-cover transition duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#061B3A] via-[#061B3A]/65 to-[#061B3A]/10" />
+              <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9">
+                <div className="mb-5 flex items-center justify-between">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                    <Globe2 size={14} className="text-[#F5B700]" />
+                    Import & Export
+                  </span>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F5B700] text-[#061B3A] transition group-hover:translate-x-1">
+                    <ArrowRight size={19} />
+                  </span>
+                </div>
+                <h3 className="text-3xl font-black text-white sm:text-4xl">
+                  Global Food Trade
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-white/75 sm:text-base">
+                  Sourcing and trade support for rice, fresh fruits, coffee and pulses
+                  for international buyers and suppliers.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2 text-[11px] font-bold text-white/70">
+                  <span className="rounded-full bg-white/10 px-3 py-2">Rice</span>
+                  <span className="rounded-full bg-white/10 px-3 py-2">Fruits</span>
+                  <span className="rounded-full bg-white/10 px-3 py-2">Coffee</span>
+                  <span className="rounded-full bg-white/10 px-3 py-2">Pulses</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          {/* SUPPORTING IMAGE STRIP */}
+          <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {[
+              { image: "/russia-construction.jpg", label: "Construction" },
+              { image: "/russia-driver.jpg", label: "Transport" },
+              { image: "https://images.pexels.com/photos/6169166/pexels-photo-6169166.jpeg?auto=compress&cs=tinysrgb&w=1600", label: "Warehouse & Packing" },
+              { image: "/russia-city.jpg", label: "Russia" },
+            ].map((item) => (
+              <div key={item.label} className="group relative h-40 overflow-hidden rounded-2xl sm:h-48">
+                <Image
+                  src={item.image}
+                  alt={item.label}
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#061B3A]/80 via-transparent to-transparent" />
+                <span className="absolute bottom-4 left-4 text-xs font-black uppercase tracking-[0.16em] text-white">
+                  {item.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -688,25 +1033,25 @@ Thank you.`;
             <div>
 
               <p className="text-sm font-black uppercase tracking-[0.2em] text-[#0647B8]">
-                {t.home.whyUs.eyebrow}
+                Why World Global Manpower
               </p>
 
               <h2 className="mt-4 text-4xl font-black leading-tight text-[#061B3A] sm:text-5xl">
-                {t.home.whyUs.title}{" "}
+                A focused team for{" "}
                 <span className="text-[#0647B8]">
-                  {t.home.whyUs.highlight}
+                  cross-border opportunities
                 </span>
               </h2>
 
               <p className="mt-6 max-w-xl leading-8 text-slate-600">
-                {t.home.whyUs.description}
+                We focus on practical support for candidates, students and trade enquiries, with clear communication throughout the process.
               </p>
 
               <Link
                 href="/about"
                 className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#061B3A] px-6 py-3.5 font-black text-white transition hover:bg-[#0647B8]"
               >
-                {t.home.whyUs.learnMore}
+                Learn More About Us
                 <ArrowRight size={17} />
               </Link>
 
@@ -720,7 +1065,7 @@ Thank you.`;
                   alt="Russia at night"
                   width={2048}
                   height={1152}
-                  className="h-[480px] w-full object-cover"
+                  className="h-[430px] w-full object-cover transition duration-700 hover:scale-105 sm:h-[480px]"
                 />
               </div>
 
@@ -729,23 +1074,23 @@ Thank you.`;
                 {[
                   {
                     icon: ShieldCheck,
-                    title: t.home.whyUs.point1Title,
-                    description: t.home.whyUs.point1Description,
+                    title: "Structured Support",
+                    description: "Clear guidance from enquiry to the next step.",
                   },
                   {
                     icon: MapPin,
-                    title: t.home.whyUs.point2Title,
-                    description: t.home.whyUs.point2Description,
+                    title: "Russia Focus",
+                    description: "Focused experience around India–Russia opportunities.",
                   },
                   {
                     icon: Headphones,
-                    title: t.home.whyUs.point3Title,
-                    description: t.home.whyUs.point3Description,
+                    title: "Responsive Assistance",
+                    description: "Support for questions, documents and communication.",
                   },
                   {
                     icon: CheckCircle2,
-                    title: t.home.whyUs.point4Title,
-                    description: t.home.whyUs.point4Description,
+                    title: "Clear Process",
+                    description: "A straightforward journey with practical information.",
                   },
                 ].map((item) => {
                   const Icon = item.icon;
@@ -792,18 +1137,18 @@ Thank you.`;
           <div className="mx-auto max-w-3xl text-center">
 
             <p className="text-sm font-black uppercase tracking-[0.2em] text-[#0647B8]">
-              {t.home.process.eyebrow}
+              How It Works
             </p>
 
             <h2 className="mt-4 text-4xl font-black leading-tight text-[#061B3A] sm:text-5xl">
-              {t.home.process.title}{" "}
+              From enquiry to{" "}
               <span className="text-[#0647B8]">
-                {t.home.process.highlight}
+                your next step
               </span>
             </h2>
 
             <p className="mt-5 leading-8 text-slate-600">
-              {t.home.process.description}
+              Share your requirement, speak with our team, complete the required process and move forward with the relevant opportunity.
             </p>
 
           </div>
@@ -817,26 +1162,26 @@ Thank you.`;
               {[
                 {
                   number: "01",
-                  title: t.home.process.step1Title,
-                  description: t.home.process.step1Description,
+                  title: "Send Enquiry",
+                  description: "Tell us about the job, education or trade requirement you are interested in.",
                   flag: "🇮🇳",
                 },
                 {
                   number: "02",
-                  title: t.home.process.step2Title,
-                  description: t.home.process.step2Description,
+                  title: "Talk to Our Team",
+                  description: "Our team reviews your enquiry and explains the next steps.",
                   flag: "📞",
                 },
                 {
                   number: "03",
-                  title: t.home.process.step3Title,
-                  description: t.home.process.step3Description,
+                  title: "Complete Documents",
+                  description: "Prepare the documents and information required for your selected service.",
                   flag: "📋",
                 },
                 {
                   number: "04",
-                  title: t.home.process.step4Title,
-                  description: t.home.process.step4Description,
+                  title: "Move Forward",
+                  description: "Continue with the relevant opportunity and support process.",
                   flag: "🇷🇺",
                 },
               ].map((step) => (
@@ -844,7 +1189,7 @@ Thank you.`;
                   key={step.number}
                   className="relative z-10 text-center"
                 >
-                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-8 border-[#F4FAFF] bg-[#061B3A] text-3xl shadow-xl">
+                  <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-8 border-[#F4FAFF] bg-white text-2xl shadow-[0_15px_35px_rgba(6,27,58,0.15)] ring-1 ring-slate-200">
                     {step.flag}
                   </div>
 
@@ -882,7 +1227,7 @@ Thank you.`;
               </p>
 
               <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">
-                Russia
+                Russia — Work & Education
               </h2>
             </div>
 
@@ -890,7 +1235,7 @@ Thank you.`;
               href="/gallery"
               className="hidden items-center gap-2 text-sm font-black text-white/70 transition hover:text-[#08C7D9] sm:flex"
             >
-              {t.home.featured.viewDetails}
+              View Details
               <ArrowRight size={16} />
             </Link>
 
@@ -945,6 +1290,58 @@ Thank you.`;
       </section>
 
       {/* =========================================================
+          IMPORT & EXPORT — PRODUCT STRIP
+      ========================================================= */}
+      <section className="bg-white py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-[#0647B8]">
+                International Trade
+              </p>
+              <h2 className="mt-4 text-4xl font-black leading-tight text-[#061B3A] sm:text-5xl">
+                Import & Export for selected food and agricultural products.
+              </h2>
+              <p className="mt-6 max-w-xl text-base leading-8 text-slate-600 sm:text-lg">
+                We support international sourcing and trade enquiries for rice, fresh
+                fruits, coffee and pulses, connecting suppliers and buyers across markets.
+              </p>
+              <Link
+                href="/import-export"
+                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#061B3A] px-6 py-3.5 font-black text-white transition hover:bg-[#0647B8]"
+              >
+                Explore Import & Export
+                <ArrowRight size={17} />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {[
+                { icon: Wheat, title: "Rice", text: "Basmati & non-basmati" },
+                { icon: Apple, title: "Fruits", text: "Fresh produce" },
+                { icon: Coffee, title: "Coffee", text: "Beans & products" },
+                { icon: Package, title: "Pulses", text: "Daal & pulses" },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-slate-200 bg-[#F4FAFF] p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#061B3A] text-[#08C7D9]">
+                      <Icon size={22} />
+                    </div>
+                    <h3 className="mt-5 font-black text-[#061B3A]">{item.title}</h3>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">{item.text}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
           FINAL CTA — NIGHT RUSSIA
       ========================================================= */}
       <section className="relative overflow-hidden">
@@ -965,15 +1362,15 @@ Thank you.`;
         <div className="relative mx-auto max-w-5xl px-5 py-24 text-center sm:px-8 sm:py-32">
 
           <p className="text-sm font-black uppercase tracking-[0.25em] text-[#08C7D9]">
-            {t.home.cta.eyebrow}
+            Start Your Enquiry
           </p>
 
           <h2 className="mt-5 text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
-            {t.home.cta.title}
+            Ready to explore your next opportunity?
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-blue-100/75 sm:text-lg">
-            {t.home.cta.description}
+            Contact World Global Manpower for jobs in Russia, MBBS guidance or international trade enquiries.
           </p>
 
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
@@ -982,7 +1379,7 @@ Thank you.`;
               href="/jobs"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#08C7D9] px-7 py-4 font-black text-[#061B3A] transition hover:bg-cyan-300"
             >
-              {t.home.cta.exploreJobs}
+              Explore Jobs
               <ArrowRight size={17} />
             </Link>
 
@@ -990,7 +1387,7 @@ Thank you.`;
               href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-7 py-4 font-black text-white backdrop-blur-md transition hover:bg-white/20"
             >
-              {t.home.cta.contact}
+              Contact Our Team
             </Link>
 
           </div>

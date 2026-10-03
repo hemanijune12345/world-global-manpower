@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FloatingButtons from "./components/FloatingButtons";
-import { LanguageProvider } from "./components/LanguageContext";
 
 export const metadata: Metadata = {
   title: "World Global Manpower Pvt. Ltd. | Jobs in Russia & MBBS in Russia",
@@ -30,15 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white text-slate-900 antialiased">
-        <LanguageProvider>
-          <Header />
+        <Header />
 
-          <main className="pt-[82px]">{children}</main>
+        <main className="pt-[82px]">{children}</main>
 
-          <Footer />
+        <Footer />
 
-          <FloatingButtons />
-        </LanguageProvider>
+        <FloatingButtons />
       </body>
     </html>
   );
